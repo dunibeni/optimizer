@@ -49,6 +49,8 @@ def allinstall():
     vs()
     ms()
     zi()
+
+
 app = customtkinter.CTk()
 app.title("OPT utility")
 app.resizable(True, False)
@@ -69,8 +71,8 @@ dark_moe.grid(row=1, column=1, padx=(5, 15), pady=(6, 50), sticky="ew")
 
 
 
-oo = customtkinter.CTkButton(app, text="Install O&O ", command=oo)
-oo.grid(row=2, column=0, padx=(15, 5), pady=6, sticky="ew")
+ooo = customtkinter.CTkButton(app, text="Install O&O ", command=oo)
+ooo.grid(row=2, column=0, padx=(15, 5), pady=6, sticky="ew")
 firefox = customtkinter.CTkButton(app, text="Install Firefox", command=fire)
 firefox.grid(row=2, column=1, padx=(5, 15), pady=6, sticky="ew")
 vscodium = customtkinter.CTkButton(app, text="Install Vscodium", command=vs)
@@ -83,13 +85,13 @@ ds = customtkinter.CTkButton(app, text="Install Steam and Discord", command=dsin
 ds.grid(row=4, column=1, padx=(5, 15), pady=6, sticky="ew")
 
 ds = customtkinter.CTkButton(app, text="Install All", command=allinstall)
-ds.grid(row=5, column=1, padx=(5, 15), pady=8, sticky="ew")
+ds.grid(row=5, column=1, padx=(5, 15), pady=30, sticky="ew")
 
 
 
 reboot_uefi = customtkinter.CTkButton(app, text="Reboot UEFI",fg_color="#991f1d", hover_color="#661109",command=uefi)
-reboot_uefi.grid(row=5, column=1, padx=(5, 15), pady=(100,10), sticky="ew")
+reboot_uefi.grid(row=6, column=1, padx=(5, 15), pady=(25,10), sticky="ew")
 
 reboot = customtkinter.CTkButton(app, text="Reboot",fg_color="#167076", hover_color="#0C435F",command=reboot_com)
-reboot.grid(row=5, column=0, padx=(15, 5), pady=(100,10), sticky="ew")
+reboot.grid(row=6, column=0, padx=(15, 5), pady=(25,10), sticky="ew")
 app.mainloop()
