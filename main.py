@@ -1,6 +1,7 @@
 import os
 import customtkinter
 import winreg
+import subprocess
 customtkinter.set_appearance_mode("system")
 customtkinter.set_default_color_theme("dark-blue")
 tm=os.environ.get("TEMP")
@@ -28,9 +29,29 @@ def disable():
     os.system("sc stop WSearch & sc config WSearch start= disabled")
     os.system("sc stop SysMain & sc config SysMain start= disabled")
     os.system("sc stop Spooler & sc config Spooler start= disabled")
-
+def oo():
+    subprocess.run("winget install -e --id OO-Software.ShutUp10", shell=True)
+    
+def fire():
+    subprocess.run("winget install --id=Mozilla.Firefox -e --silent", shell=True)
+def vs():
+    subprocess.run("winget install -e --id VSCodium.VSCodium", shell=True)
+def ms():
+    subprocess.run("winget install -e --id Microsoft.Office", shell=True)
+def zi():
+    subprocess.run("winget install -e --id 7zip.7zip", shell=True)
+def dsinstall():
+    subprocess.run("winget install -e --id Discord.Discord", shell=True)
+    subprocess.run("winget install -e --id Valve.Steam", shell=True)
+def allinstall():
+    oo()
+    fire()
+    vs()
+    ms()
+    zi()
 app = customtkinter.CTk()
 app.title("OPT utility")
+app.resizable(True, False)
 app.geometry("500x400")
 app.grid_columnconfigure(0, weight=1)
 app.grid_columnconfigure(1, weight=1)
@@ -41,21 +62,34 @@ dark_mode = customtkinter.CTkButton(app, text="Dark mode", fg_color="#474a48", h
 dark_mode.grid(row=0, column=1, padx=(5, 15), pady=(12,6), sticky="ew")
 
 cls_temp = customtkinter.CTkButton(app, text="Cleanup", fg_color="#474a48", hover_color="#282A28", command=clstemp)
-cls_temp.grid(row=1, column=0, padx=(15, 5), pady=6, sticky="ew")
+cls_temp.grid(row=1, column=0, padx=(15, 5), pady=(6, 50), sticky="ew")
 
-dark_moe = customtkinter.CTkButton(app, text="Disable Indexing, Sysmain ...", fg_color="#474a48", hover_color="#282A28", command=disable)
-dark_moe.grid(row=1, column=1, padx=(5, 15), pady=6, sticky="ew")
+dark_moe = customtkinter.CTkButton(app, text="Disable services", fg_color="#474a48", hover_color="#282A28", command=disable)
+dark_moe.grid(row=1, column=1, padx=(5, 15), pady=(6, 50), sticky="ew")
 
 
-button5 = customtkinter.CTkButton(app, text="setting1", command=button_callback)
-button5.grid(row=2, column=0, padx=(15, 5), pady=6, sticky="ew")
-button6 = customtkinter.CTkButton(app, text="setting2", command=button_callback)
-button6.grid(row=2, column=1, padx=(5, 15), pady=6, sticky="ew")
-button7 = customtkinter.CTkButton(app, text="setting1", command=button_callback)
-button7.grid(row=3, column=0, padx=(15, 5), pady=6, sticky="ew")
+
+oo = customtkinter.CTkButton(app, text="Install O&O ", command=oo)
+oo.grid(row=2, column=0, padx=(15, 5), pady=6, sticky="ew")
+firefox = customtkinter.CTkButton(app, text="Install Firefox", command=fire)
+firefox.grid(row=2, column=1, padx=(5, 15), pady=6, sticky="ew")
+vscodium = customtkinter.CTkButton(app, text="Install Vscodium", command=vs)
+vscodium.grid(row=3, column=0, padx=(15, 5), pady=6, sticky="ew")
+msoffice = customtkinter.CTkButton(app, text="Install Ms Office", command=ms)
+msoffice.grid(row=3, column=1, padx=(5, 15), pady=6, sticky="ew")
+z = customtkinter.CTkButton(app, text="Install 7z", command=zi)
+z.grid(row=4, column=0, padx=(15, 5), pady=6, sticky="ew")
+ds = customtkinter.CTkButton(app, text="Install Steam and Discord", command=dsinstall)
+ds.grid(row=4, column=1, padx=(5, 15), pady=6, sticky="ew")
+
+ds = customtkinter.CTkButton(app, text="Install All", command=allinstall)
+ds.grid(row=5, column=1, padx=(5, 15), pady=8, sticky="ew")
+
+
+
 reboot_uefi = customtkinter.CTkButton(app, text="Reboot UEFI",fg_color="#991f1d", hover_color="#661109",command=uefi)
-reboot_uefi.grid(row=3, column=1, padx=(5, 15), pady=(210,1), sticky="ew")
+reboot_uefi.grid(row=5, column=1, padx=(5, 15), pady=(100,10), sticky="ew")
 
 reboot = customtkinter.CTkButton(app, text="Reboot",fg_color="#167076", hover_color="#0C435F",command=reboot_com)
-reboot.grid(row=3, column=0, padx=(15, 5), pady=(210,1), sticky="ew")
+reboot.grid(row=5, column=0, padx=(15, 5), pady=(100,10), sticky="ew")
 app.mainloop()
