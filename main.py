@@ -5,9 +5,6 @@ import subprocess
 customtkinter.set_appearance_mode("system")
 customtkinter.set_default_color_theme("dark-blue")
 tm=os.environ.get("TEMP")
-def button_callback():
-    print("button pressed")
-
 def light():
     winreg.SetValueEx(winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize"), "SystemUsesLightTheme", 0, winreg.REG_SZ, "1")
     os.system("taskkill /f /im explorer.exe & start explorer.exe")
@@ -29,6 +26,8 @@ def disable():
     os.system("sc stop WSearch & sc config WSearch start= disabled")
     os.system("sc stop SysMain & sc config SysMain start= disabled")
     os.system("sc stop Spooler & sc config Spooler start= disabled")
+
+# !!! Don't change this, whoever you are in the future :D winget doesn't work from the command line in a custom Windows installer. !!!
 def oo():
     subprocess.run("winget install -e --id OO-Software.ShutUp10", shell=True)
     
