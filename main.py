@@ -3,6 +3,7 @@ import customtkinter
 import winreg
 customtkinter.set_appearance_mode("system")
 customtkinter.set_default_color_theme("dark-blue")
+tm=os.environ.get("TEMP")
 def button_callback():
     print("button pressed")
 
@@ -16,23 +17,34 @@ def uefi():
     os.system("shutdown /r /fw /t 0")
 def reboot_com():
     os.system("shutdown /r /t 0")
+def clstemp():
+    try:
+        os.system('del /q /f /s "C:/WINDOWS/Temp\\*.*"')
+        os.system(f'del /q /f /s "{tm}\\*.*"')
+        os.system('del /q /f /s "C:/WINDOWS/prefetch\\*.*"')
+    except Exception:
+        pass
+def disable():
+    os.system("sc stop WSearch & sc config WSearch start= disabled")
+    os.system("sc stop SysMain & sc config SysMain start= disabled")
+    os.system("sc stop Spooler & sc config Spooler start= disabled")
+
 app = customtkinter.CTk()
 app.title("OPT utility")
 app.geometry("500x400")
 app.grid_columnconfigure(0, weight=1)
 app.grid_columnconfigure(1, weight=1)
 light_mode = customtkinter.CTkButton(app, text="Light mode", fg_color="#474a48", hover_color="#282A28", command=light)
-light_mode.grid(row=0, column=0, padx=(15, 5), pady=10, sticky="ew")
+light_mode.grid(row=0, column=0, padx=(15, 5), pady=(12,6), sticky="ew")
 
 dark_mode = customtkinter.CTkButton(app, text="Dark mode", fg_color="#474a48", hover_color="#282A28", command=dark)
-dark_mode.grid(row=0, column=1, padx=(5, 15), pady=10, sticky="ew")
+dark_mode.grid(row=0, column=1, padx=(5, 15), pady=(12,6), sticky="ew")
 
+cls_temp = customtkinter.CTkButton(app, text="Cleanup", fg_color="#474a48", hover_color="#282A28", command=clstemp)
+cls_temp.grid(row=1, column=0, padx=(15, 5), pady=6, sticky="ew")
 
-
-button3 = customtkinter.CTkButton(app, text="setting1", command=button_callback)
-button3.grid(row=1, column=0, padx=(15, 5), pady=(20, 6), sticky="ew")
-button4 = customtkinter.CTkButton(app, text="setting2", command=button_callback)
-button4.grid(row=1, column=1, padx=(5, 15), pady=(20, 6), sticky="ew")
+dark_moe = customtkinter.CTkButton(app, text="Disable Indexing, Sysmain ...", fg_color="#474a48", hover_color="#282A28", command=disable)
+dark_moe.grid(row=1, column=1, padx=(5, 15), pady=6, sticky="ew")
 
 
 button5 = customtkinter.CTkButton(app, text="setting1", command=button_callback)
