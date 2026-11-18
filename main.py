@@ -14,6 +14,8 @@ def dark():
     os.system("taskkill /f /im explorer.exe & start explorer.exe")
 def uefi():
     os.system("shutdown /r /fw /t 0")
+def reboot_com():
+    os.system("shutdown /r /t 0")
 app = customtkinter.CTk()
 app.title("OPT utility")
 app.geometry("500x400")
@@ -39,6 +41,9 @@ button6 = customtkinter.CTkButton(app, text="setting2", command=button_callback)
 button6.grid(row=2, column=1, padx=(5, 15), pady=6, sticky="ew")
 button7 = customtkinter.CTkButton(app, text="setting1", command=button_callback)
 button7.grid(row=3, column=0, padx=(15, 5), pady=6, sticky="ew")
-reboot_uefi = customtkinter.CTkButton(app, text="Reboot UEFI",fg_color="#991f1d", hover_color="#661109",command=button_callback)
+reboot_uefi = customtkinter.CTkButton(app, text="Reboot UEFI",fg_color="#991f1d", hover_color="#661109",command=uefi)
 reboot_uefi.grid(row=3, column=1, padx=(5, 15), pady=(210,1), sticky="ew")
+
+reboot = customtkinter.CTkButton(app, text="Reboot",fg_color="#167076", hover_color="#0C435F",command=reboot_com)
+reboot.grid(row=3, column=0, padx=(15, 5), pady=(210,1), sticky="ew")
 app.mainloop()
