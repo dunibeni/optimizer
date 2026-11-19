@@ -27,7 +27,7 @@ def disable():
     os.system("sc stop SysMain & sc config SysMain start= disabled")
     os.system("sc stop Spooler & sc config Spooler start= disabled")
 
-# !!! Don't change this, whoever you are in the future :D winget doesn't work from the command line in a custom Windows installer. !!!
+# !!! Don't change this, whoever you are in the future :D winget doesn't work from the command line in a custom Windows install. !!!
 def oo():
     subprocess.run("winget install -e --id OO-Software.ShutUp10", shell=True)
     
